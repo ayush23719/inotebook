@@ -2,11 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    obj = {
-        name: 'John',
-        age: 30
-    }
-    res.json(obj)
+
+    res.json([])
 })
 
 module.exports = router;
