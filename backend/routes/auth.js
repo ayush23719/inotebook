@@ -18,6 +18,5 @@ router.get('/', [
         email: req.body.email,
         password: req.body.password
     }).then(user => res.json(user))
-    res.send(req.body);
 })
 module.exports = router;
