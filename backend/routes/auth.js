@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
 const { body, validationResult } = require('express-validator');
-// Create a User using: POST "/api/auth"/ Doesn't require auth
+// Create a User using: POST "/api/auth"/ No login required
 router.get('/', [
     body('name', 'Enter a valid name').isLength({ min: 3 }),
     body('email', 'Enter a valid email').isEmail(),
