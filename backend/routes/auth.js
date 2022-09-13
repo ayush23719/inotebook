@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { body, validationResult } = require('express-validator');
 const JWT_SECRET = 'shhhhh@123'
-// Create a User using: POST "/api/auth/createuser" No login required
+// ROUTE 1: Create a User using: POST "/api/auth/createuser" No login required
 router.post('/createuser', [
     body('name', 'Enter a valid name').isLength({ min: 3 }),
     body('email', 'Enter a valid email').isEmail(),
@@ -37,7 +37,7 @@ router.post('/createuser', [
     res.json({ authToken })
 })
 
-// Create a User using: POST "/api/auth/createuser" No login required
+// ROUTE 2: Authenticate a User using: POST "/api/auth/createuser" No login required
 router.post('/login', [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Password cannot be blank').exists(),
