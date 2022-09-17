@@ -16,12 +16,14 @@ router.post('/addnote', fetchuser, [
     body('title', 'Enter a valid title').isLength({ min: 3 }),
     body('description', 'Description must be atleast 5 characters').isLength({ min: 5 }),
 ], async (req, res) => {
-    const { title, description, tag } = req.body;
-    // Simple validation
-    if (!title || !description || !tag) {
-        return res.status(400).json({ error: "Please fill the all fields" })
-    }
     try {
+        const { title, description, tag } = req.body;
+        // if there are errors, return Bad request and the errors
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() })
+        }
+
         const note = new Notes({
             title, description, tag, user: req.user.id
         })
